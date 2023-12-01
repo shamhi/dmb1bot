@@ -48,21 +48,6 @@ async def get_date(query: InlineQuery, state: FSMContext):
     await state.update_data(date=date, query=query.query, current_kb='main')
 
 
-@inline_router.inline_query(F.query)
-async def no_check(query: InlineQuery):
-    date = query.query
-    results = [InlineQueryResultArticle(
-        id='0',
-        title='Usage',
-        description='Usage: @dmb1bot [дата призыва (01.01.2021)]',
-        input_message_content=InputTextMessageContent(
-            message_text=f'`{date}` не является датой',
-            parse_mode='markdownv2'
-        )
-    )]
-    await query.answer(results=results)
-
-
 @inline_router.callback_query(F.data == 'edit_total')
 async def edit_total(call: CallbackQuery, bot: Bot, state: FSMContext):
     state_data = await state.get_data()
@@ -95,3 +80,18 @@ async def update_date(call: CallbackQuery, bot: Bot, state: FSMContext):
     elif current_kb == 'total':
         kb = ikb.get_edited_kb(query)
         return await fn.edit_total_text(bot, call.inline_message_id, date, kb)
+
+
+@inline_router.inline_query()
+async def no_check(query: InlineQuery):
+    date = query.query
+    results = [InlineQueryResultArticle(
+        id='0',
+        title='Usage',
+        description='Usage: @dmb1bot [дата призыва (01.01.2021)]',
+        input_message_content=InputTextMessageContent(
+            message_text=f'`{date}` не является датой',
+            parse_mode='markdownv2'
+        )
+    )]
+    await query.answer(results=results)
