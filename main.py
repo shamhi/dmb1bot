@@ -22,6 +22,7 @@ def setup_middlewares(dp: Dispatcher):
 
 async def setup_aiogram(dp: Dispatcher, bot: Bot):
     setup_logging(dp)
+    setup_middlewares(dp)
     logger = dp["aiogram_logger"]
     logger.debug("Configuring aiogram")
     setup_handlers(dp)
