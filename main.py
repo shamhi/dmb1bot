@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher
 
-from app.routers import inline_router
+from app.routers import inline_router, private_router
 from app.config import config
 from app import utils
 
@@ -10,7 +10,7 @@ def setup_logging(dp: Dispatcher):
 
 
 def setup_handlers(dp: Dispatcher):
-    dp.include_router(inline_router)
+    dp.include_routers(inline_router, private_router)
 
 
 async def setup_aiogram(dp: Dispatcher, bot: Bot):

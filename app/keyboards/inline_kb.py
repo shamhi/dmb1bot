@@ -16,3 +16,11 @@ def get_edited_kb(query):
         [InlineKeyboardButton(text='Fork', switch_inline_query_current_chat=query)]
     ])
     return kb
+
+
+def get_switch_inline_kb(current_date):
+    kb = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text='Switch to inline', switch_inline_query_current_chat=current_date)]
+    ])
+
+    return kb
