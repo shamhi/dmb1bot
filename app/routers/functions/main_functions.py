@@ -52,14 +52,14 @@ async def edit_main_text(bot, inline_msg_id, date, kb):
     try:
         years, months, days, hours, minutes, seconds = remaining_time(f'{date} 0:00:00')
         return await bot.edit_message_text(inline_message_id=inline_msg_id,
-                                           text=f'{"ㅤ" * 2}С `{get_now()}` даты до Дембеля `{date}` осталось{"ㅤ" * 2}\n'
-                                                f'{"ㅤ" * 13}*_{years}_* {"год" if 0 < years <= 4 else "лет"}\n'
-                                                f'{"ㅤ" * 12}*_{months}_* месяцев\n'
-                                                f'{"ㅤ" * 13}*_{days}_* дней\n'
-                                                f'{"ㅤ" * 13}*_{hours}_* часов\n'
-                                                f'{"ㅤ" * 13}*_{minutes}_* минут\n'
-                                                f'{"ㅤ" * 13}*_{seconds}_* секунд\n\n'
-                                                f'{"ㅤ" * 5}Это составляет `61%` времени с призыва',
+                                           text=f'С `{get_now()}` даты до Дембеля `{date}` осталось\n\n'
+                                                f'*_{years}_* {"год" if 0 < years <= 4 else "лет"}\n'
+                                                f'*_{months}_* месяцев\n'
+                                                f'*_{days}_* дней\n'
+                                                f'*_{hours}_* часов\n'
+                                                f'*_{minutes}_* минут\n'
+                                                f'*_{seconds}_* секунд\n\n'
+                                                f'Это составляет `61%` времени с призыва',
                                            reply_markup=kb, parse_mode='markdownv2')
     except:
         ...
@@ -69,14 +69,14 @@ async def edit_total_text(bot, inline_msg_id, date, kb):
     try:
         total_weeks, total_days, total_hours, total_minutes, total_seconds = remaining_total_time(f'{date} 0:00:00')
         return await bot.edit_message_text(inline_message_id=inline_msg_id,
-                                           text=f'{"ㅤ" * 2}С `{get_now()}` даты до Дембеля `{date}` осталось{"ㅤ" * 2}\n'
-                                                f'{"ㅤ" * 14}ВСЕГО\n'
-                                                f'{"ㅤ" * 13}*_{total_weeks}_* недель\n'
-                                                f'{"ㅤ" * 13}*_{total_days}_* дней\n'
-                                                f'{"ㅤ" * 12}*_{total_hours}_* часов\n'
-                                                f'{"ㅤ" * 12}*_{total_minutes}_* минут\n'
-                                                f'{"ㅤ" * 12}*_{total_seconds}_* секунд\n\n'
-                                                f'{"ㅤ" * 5}Это составляет `61%` времени с призыва',
+                                           text=f'С `{get_now()}` даты до Дембеля `{date}` осталось\n\n'
+                                                f'ВСЕГО\n'
+                                                f'*_{total_weeks}_* недель\n'
+                                                f'*_{total_days}_* дней\n'
+                                                f'*_{total_hours}_* часов\n'
+                                                f'*_{total_minutes}_* минут\n'
+                                                f'*_{total_seconds}_* секунд\n\n'
+                                                f'Это составляет `61%` времени с призыва',
                                            reply_markup=kb, parse_mode='markdownv2')
     except:
         ...

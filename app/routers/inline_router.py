@@ -31,14 +31,14 @@ async def get_date(query: InlineQuery, state: FSMContext):
         title='До Дембеля осталось',
         description=f'{years} {"год" if 0 < years <= 4 else "лет"}, {months} месяцев, {days} дней, {hours} часов, {minutes} минут, {seconds} секунд',
         input_message_content=InputTextMessageContent(
-            message_text=f'{"ㅤ" * 2}С `{fn.get_now()}` даты до Дембеля `{date}` осталось{"ㅤ" * 2}\n'
-                         f'{"ㅤ" * 13}*_{years}_* {"год" if 0 < years <= 4 else "лет"}\n'
-                         f'{"ㅤ" * 12}*_{months}_* месяцев\n'
-                         f'{"ㅤ" * 13}*_{days}_* дней\n'
-                         f'{"ㅤ" * 13}*_{hours}_* часов\n'
-                         f'{"ㅤ" * 13}*_{minutes}_* минут\n'
-                         f'{"ㅤ" * 13}*_{seconds}_* секунд\n\n'
-                         f'{"ㅤ" * 5}Это составляет `61%` времени с призыва',
+            message_text=f'С `{fn.get_now()}` даты до Дембеля `{date}` осталось\n\n'
+                         f'*_{years}_* {"год" if 0 < years <= 4 else "лет"}\n'
+                         f'*_{months}_* месяцев\n'
+                         f'*_{days}_* дней\n'
+                         f'*_{hours}_* часов\n'
+                         f'*_{minutes}_* минут\n'
+                         f'*_{seconds}_* секунд\n\n'
+                         f'Это составляет `61%` времени с призыва',
             parse_mode='markdownv2'
         ),
         reply_markup=ikb.get_main_kb(query.query)
