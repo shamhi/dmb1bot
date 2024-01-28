@@ -24,7 +24,7 @@ async def get_date(query: InlineQuery, state: FSMContext):
         )]
         return await query.answer(results=results)
 
-    years, months, days, hours, minutes, seconds = fn.remaining_time(f'{date} 0:00:00')
+    years, months, days, hours, minutes, seconds, percent = fn.remaining_time(f'{date} 0:00:00')
 
     results = [InlineQueryResultArticle(
         id='0',
@@ -32,13 +32,17 @@ async def get_date(query: InlineQuery, state: FSMContext):
         description=f'{years} {"год" if 0 < years <= 4 else "лет"}, {months} месяцев, {days} дней, {hours} часов, {minutes} минут, {seconds} секунд',
         input_message_content=InputTextMessageContent(
             message_text=f'С `{fn.get_now()}` даты до Дембеля `{date}` осталось\n\n'
-                         f'*_{years}_* {"год" if 0 < years <= 4 else "лет"}\n'
-                         f'*_{months}_* месяцев\n'
-                         f'*_{days}_* дней\n'
-                         f'*_{hours}_* часов\n'
-                         f'*_{minutes}_* минут\n'
-                         f'*_{seconds}_* секунд\n\n'
-                         f'Это составляет `61%` времени с призыва',
+                         f'```json\n'
+                         '{\n'
+                         f'    "{"Год" if 0 < years <= 4 else "Лет"}": {years} \n'
+                         f'    "Месяцев": {months}\n'
+                         f'    "Дней": {days}\n'
+                         f'    "Часов": {hours}\n'
+                         f'    "Минут": {minutes}\n'
+                         f'    "Секунд": {seconds}\n'
+                         '}\n'
+                         f'```\n\n'
+                         f'Это составляет `{percent}%` времени с призыва',
             parse_mode='markdownv2'
         ),
         reply_markup=ikb.get_main_kb(query.query)
